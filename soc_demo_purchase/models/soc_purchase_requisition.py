@@ -63,8 +63,8 @@ class SocPurchaseRequisition(models.Model):
         Action linked to a smartbutton to open the purchase.report pivot view
         """
         self.ensure_one()
-        action = self.env['ir.actions.actions']._for_xml_id('purchase_enterprise.purchase_report_action_dashboard')
+        action = self.env['ir.actions.actions']._for_xml_id('soc_demo_purchase.soc_purchase_report_pivot_action')
 
-        # action['domain'] = [('question_id', '=', self.id)]
+        action['domain'] = [('order_id', 'in', self.purchase_ids.ids)]
 
         return action

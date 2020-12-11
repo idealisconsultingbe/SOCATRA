@@ -7,13 +7,21 @@
         <field name="inherit_id" ref="purchase_requisition.view_purchase_requisition_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='order_count']/.." position="before">
-                <button name="action_open_purchase_report" type="object" class="oe_stat_button" icon="fa-list"/>
+                <button name="action_open_purchase_report" type="object" string="Comparison" class="oe_stat_button" icon="fa-list"/>
             </xpath>
 
             <xpath expr="//field[@name='currency_id']" position="after">
                 <field name="candidate_ids" widget="many2many_tags" options='{"no_open": True, "no_create": True}'/>
             </xpath>
         </field>
+    </record>
+
+    <record id="soc_purchase_report_pivot_action" model="ir.actions.act_window">
+        <field name="name">Pivot View</field>
+        <field name="res_model">purchase.report</field>
+        <field name="view_mode">pivot</field>
+        <field name="search_view_id" ref="purchase.view_purchase_order_search"/>
+        <field name="context">{'pivot_measures': ['untaxed_total', 'price_total'], 'pivot_column_groupby': [], 'pivot_row_groupby': ['order_id']}</field>
     </record>
 
 </odoo>
