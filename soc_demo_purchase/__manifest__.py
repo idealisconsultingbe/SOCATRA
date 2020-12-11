@@ -8,6 +8,7 @@
     'depends': [
         'base',
         'purchase',
+        'purchase_enterprise',
         'purchase_requisition',
     ],
     'data': [

@@ -57,3 +57,14 @@ class SocPurchaseRequisition(models.Model):
                     old_followers.append(current_candidate_id)
 
             requisition.message_unsubscribe(old_followers)
+
+    def action_open_purchase_report(self):
+        """
+        Action linked to a smartbutton to open the purchase.report pivot view
+        """
+        self.ensure_one()
+        action = self.env['ir.actions.actions']._for_xml_id('purchase_enterprise.purchase_report_action_dashboard')
+
+        # action['domain'] = [('question_id', '=', self.id)]
+
+        return action
